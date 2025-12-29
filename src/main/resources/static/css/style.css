@@ -1,0 +1,579 @@
+:root {
+    --cinza-claro: #BABABA;
+    --cinza-escuro: #909090;
+    --roxo-claro: #9972BC;
+    --roxo-escuro: #6D25AC;
+    --texto-escuro: #000000;
+    --texto-claro: #FFFFFF;
+}
+
+body.bg-app {
+    background-color: var(--cinza-claro);
+    color: var(--texto-escuro);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.login-panel {
+    background-color: var(--cinza-escuro);
+    color: var(--texto-claro);
+}
+
+.logo-desktop {
+    max-width: 1000px;
+    width: 100%;
+    display: block;
+}
+
+.logo-mobile {
+    width: 100%;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .logo-desktop {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.label-login {
+    font-weight: bold;
+    color: var(--texto-claro);
+}
+
+.input-login {
+    background-color: var(--roxo-claro);
+    border: none;
+    color: var(--texto-escuro);
+}
+
+.input-login:focus {
+    background-color: var(--roxo-claro);
+    box-shadow: 0 0 0 0.15rem rgba(109, 37, 172, 0.5);
+}
+
+@media (max-width: 576px) {
+    .label-login {
+        text-align: left;
+        margin-bottom: 0.25rem;
+    }
+}
+
+.btn-entrar {
+    background-color: var(--roxo-escuro);
+    border: none;
+    color: var(--texto-claro);
+    font-weight: bold;
+}
+
+.btn-entrar:hover {
+    background-color: #5b1f8e;
+}
+
+.btn-sem-login {
+    background-color: var(--roxo-claro);
+    border: none;
+    color: var(--texto-escuro);
+}
+
+.btn-sem-login:hover {
+    background-color: #875eae;
+}
+
+.login-ou {
+    font-weight: bold;
+    color: var(--texto-claro);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--cinza-claro);
+}
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    margin-left: 220px;
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.side-menu {
+    width: 210px;
+    background-color: var(--roxo-claro);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--roxo-claro) var(--cinza-escuro);
+    z-index: 1600;
+}
+
+.menu-top,
+.menu-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+}
+
+.menu-btn {
+    width: 100%;
+    aspect-ratio: 275 / 200;
+    background-color: var(--roxo-claro);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+}
+
+.user-panel {
+    background: var(--cinza-escuro);
+    padding: 8px;
+    text-align: center;
+    color: #000;
+}
+
+.btn-buscar-livros { background-image: url("../icons/iconBuscarLivros.png"); }
+.btn-buscar-autores { background-image: url("../icons/iconBuscarAutores.png"); }
+.btn-gerenciar { background-image: url("../icons/iconGerenciar.png"); }
+.btn-sair { background-image: url("../icons/iconSair.png"); }
+
+.main-content {
+    margin-left: 220px;
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-area {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.search-input {
+    flex: 1;
+    background: var(--roxo-claro);
+    border: none;
+    padding: 10px;
+}
+
+.search-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-icon {
+    width: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+}
+
+.btn-filter {
+    background-color: var(--roxo-claro);
+    background-image: url("../icons/iconFiltro.png");
+}
+.btn-buscar {
+    background-color: var(--roxo-escuro);
+    background-image: url("../icons/iconBuscar.png");
+}
+.btn-cadastro {
+    background-color: var(--roxo-escuro);
+    background-image: url("../icons/iconCadastro.png");
+}
+
+.table-area {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.table-books {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.book-row {
+    background: var(--cinza-escuro);
+}
+
+.book-row td {
+    padding: 10px;
+}
+
+.col-actions {
+    text-align: right;
+}
+
+.btn-mais {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: url("../icons/iconMais.png") center/cover no-repeat;
+}
+
+.filter-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+}
+
+.filter-panel {
+    background: var(--cinza-escuro);
+    width: 420px;
+    max-width: 90%;
+    margin: 10vh auto;
+    padding: 20px;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-close-filter {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: url("../icons/iconXis2.png") center/cover no-repeat;
+}
+
+.filter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.filter-body input,
+.filter-body select {
+    background: var(--roxo-claro);
+    border: none;
+    padding: 8px;
+}
+
+.year-range {
+    display: flex;
+    gap: 8px;
+}
+
+.year-range input {
+    width: 100%;
+    min-width: 0;
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.btn-primary {
+    background: var(--roxo-escuro);
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+}
+
+.btn-secondary {
+    background: var(--roxo-claro);
+    border: none;
+    padding: 8px 16px;
+}
+
+@media (max-width: 768px) {
+
+    .search-area {
+        flex-direction: column;
+    }
+
+    .search-buttons {
+        width: 100%;
+    }
+
+    .search-buttons .btn-icon {
+        flex: 1;
+        height: 56px;
+        aspect-ratio: auto;
+        background-size: 40px 40px;
+    }
+
+    .btn-filter {
+        background-color: var(--roxo-claro);
+    }
+
+    .btn-buscar {
+        background-color: var(--roxo-escuro);
+    }
+
+    .btn-cadastro {
+        background-color: var(--roxo-escuro);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .side-menu {
+        left: -220px;
+        transition: left 0.3s ease;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .menu-fab {
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: none;
+        background: var(--roxo-escuro) url("../icons/iconMenu.png") center/32px no-repeat;
+        z-index: 1500;
+    }
+
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 1400;
+    }
+}
+
+.btn-edit,
+.btn-delete {
+    width: 28px;
+    height: 28px;
+    border: none;
+    margin-left: 6px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.btn-edit {
+    background-image: url("../icons/iconEdit.png");
+}
+
+.btn-delete {
+    background-image: url("../icons/iconLixo.png");
+}
+
+.gerenciar-area {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.gerenciar-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    max-width: 900px;
+}
+
+.gerenciar-btn {
+    width: 275px;
+    height: 200px;
+    border: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gerenciar-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-categorias {
+    background-image: url("../icons/iconCategorias.png");
+}
+
+.btn-movimentos {
+    background-image: url("../icons/iconMovimentos.png");
+}
+
+.btn-editoras {
+    background-image: url("../icons/iconEditoras.png");
+}
+
+.btn-logins {
+    background-image: url("../icons/iconLogins.png");
+}
+
+.livro-panel {
+    background-color: var(--roxo-claro);
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+}
+
+.livro-header {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.livro-capa img {
+    max-width: 220px;
+    max-height: 320px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    background-color: var(--cinza-escuro);
+}
+
+.livro-info {
+    flex: 1;
+    max-width: 700px;
+}
+
+.livro-titulo {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.livro-autor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.btn-autor-info {
+    width: 24px;
+    height: 24px;
+    background: url("../icons/iconMais2.png") center/contain no-repeat;
+    border: none;
+}
+
+.livro-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 6px 20px;
+}
+
+.livro-meta div {
+    margin-bottom: 4px;
+}
+
+.livro-sinopse {
+    margin-top: 16px;
+}
+
+.livro-categorias {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.categoria-tag {
+    background-color: var(--roxo-escuro);
+    color: var(--texto-claro);
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+}
+
+.livro-acoes {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.livro-acoes .btn-primary,
+.livro-acoes .btn-secondary {
+    padding: 8px 16px;
+}
+
+@media (max-width: 768px) {
+
+    .livro-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .livro-capa {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .livro-capa img {
+        max-width: 180px;
+        max-height: 260px;
+    }
+
+    .livro-info {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .livro-autor {
+        justify-content: flex-start;
+    }
+
+    .livro-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .livro-acoes {
+        justify-content: flex-start;
+    }
+}
+
+.form-panel {
+    background-color: var(--cinza-escuro);
+    padding: 16px;
+    margin-top: 20px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.filter-body textarea {
+    background: var(--roxo-claro);
+    border: none;
+    padding: 10px;
+    resize: vertical;
+    color: var(--texto-escuro);
+}
+
+#appCadastroLivro .categoria-tag {
+    cursor: pointer;
+}

@@ -1,0 +1,161 @@
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Biblioteca Kumori - Info Livro</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/png" th:href="@{/icons/LogoC.png}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+
+    <body class="bg-app">
+
+        <div class="app-layout" id="appInfoLivro">
+
+            <nav class="side-menu" id="sideMenu">
+                <div class="menu-top">
+                    <button id="btnNavBuscarLivros" class="menu-btn btn-buscar-livros" type="button"></button>
+                    <button id="btnNavBuscarAutores" class="menu-btn btn-buscar-autores" type="button"></button>
+
+                    <button th:if="${usuarioLogado.permissaoGerenciar()}"
+                            id="btnNavGerenciar"
+                            class="menu-btn btn-gerenciar"
+                            type="button"></button>
+                </div>
+
+                <div class="menu-bottom">
+                    <div class="user-panel">
+                        <div class="user-name" th:text="${usuarioLogado.login}">Usuário</div>
+                        <div class="user-role" th:text="${usuarioLogado.getAcesso}">Acesso</div>
+                    </div>
+                    <button id="btnNavSair" class="menu-btn btn-sair" type="button"></button>
+                </div>
+            </nav>
+
+            <button id="btnOpenMenu" class="menu-fab d-md-none" type="button"></button>
+            <div id="menuOverlay" class="menu-overlay"></div>
+
+            <main class="main-content">
+
+                <section class="livro-panel">
+
+                    <div class="livro-header">
+
+                        <div class="livro-capa">
+                            <img th:src="@{/capa/{id}(id=${livro.id})}"
+                                 alt="Capa do Livro"
+                                 onerror="this.src='/icons/iconSemImagem.png'">
+                        </div>
+
+                        <div class="livro-info">
+                            <h1 class="livro-titulo" th:text="${livro.titulo}">Título</h1>
+
+                            <div class="livro-autor">
+                                <span>
+                                    <strong th:text="${livro.autor.nome}">Autor</strong>
+                                </span>
+                                <button id="btnInfoAutor"
+                                        class="btn-autor-info"
+                                        type="button"
+                                        th:data-id="${livro.autor.id}">
+                                </button>
+                            </div>
+
+                            <div class="livro-meta">
+                                <div><strong th:text="${livro.editora.nome}">Editora</strong></div>
+                                <div><strong>ID:</strong> <span th:text="${livro.id}"></span></div>
+                                <div><strong>Ano:</strong> <span th:text="${livro.ano}"></span></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="livro-sinopse">
+                        <strong>Sinopse:</strong>
+                        <p th:text="${livro.descricao}">Sinopse</p>
+                    </div>
+
+                    <div class="livro-categorias">
+                        <span th:each="cat : ${categorias}"
+                              class="categoria-tag"
+                              th:text="${cat.nome}">
+                        </span>
+                    </div>
+
+                    <div class="livro-acoes" th:if="${usuarioLogado.permissaoGerenciar()}">
+                        <button id="btnEditarLivro"
+                                class="btn-primary"
+                                type="button"
+                                th:data-id="${livro.id}">
+                            Editar
+                        </button>
+
+                        <button id="btnExcluirLivro"
+                                class="btn-primary"
+                                type="button"
+                                th:data-id="${livro.id}">
+                            Excluir
+                        </button>
+
+                        <button id="btnNovoExemplar"
+                                class="btn-primary"
+                                type="button"
+                                th:data-id="${livro.id}">
+                            Novo Exemplar
+                        </button>
+                    </div>
+
+                </section>
+
+                <section class="table-area">
+
+                    <table class="table-books">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Local</th>
+                                <th class="col-actions" th:if="${usuarioLogado.permissaoGerenciar()}"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="ex : ${exemplares}" class="book-row">
+                                <td th:text="${ex.id}">1</td>
+                                <td th:text="${ex.localizacao}">Local</td>
+
+                                <td class="col-actions"
+                                    th:if="${usuarioLogado.permissaoGerenciar()}">
+
+                                    <button class="btn-edit btnEditarExemplar"
+                                            type="button"
+                                            th:data-id="${ex.id}">
+                                    </button>
+
+                                    <button class="btn-delete btnExcluirExemplar"
+                                            type="button"
+                                            th:data-id="${ex.id}">
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+            </main>
+        </div>
+        
+        <form id="formExcluirLivro" method="post" style="display:none;">
+        </form>
+
+        <form id="formExcluirExemplar" method="post" style="display:none;">
+        </form>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/InfoLivroJs.js"></script>
+
+    </body>
+</html>
