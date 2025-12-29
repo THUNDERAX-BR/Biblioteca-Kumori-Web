@@ -40,6 +40,9 @@
 
         <h1 class="livro-titulo mb-4">Cadastro de Login</h1>
 
+        <div th:if="${erroDuplicado}" class="alert alert-danger">
+            Já existe um login com este nome.
+        </div>
         <form method="post" th:action="@{/login/cadastro}" id="formCadastroLogin">
 
             <div class="filter-body">

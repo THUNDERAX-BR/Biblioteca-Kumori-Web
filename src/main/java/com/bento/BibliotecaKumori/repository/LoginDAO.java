@@ -116,7 +116,7 @@ public class LoginDAO {
             try (PreparedStatement ps = conn.prepareStatement(verifica)) {
                 ps.setString(1, login);
                 if (ps.executeQuery().next()) {
-                    throw new RuntimeException("Login já existe.");
+                    throw new IllegalStateException("Login já existe.");
                 }
             }
 

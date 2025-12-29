@@ -85,16 +85,33 @@ public class LoginController {
     public String cadastrar(
             @RequestParam String login,
             @RequestParam String senha,
-            @RequestParam String acesso) {
+            @RequestParam String acesso,
+            Model model,
+            HttpSession session) {
+
+        Login usuarioLogado = (Login) session.getAttribute("usuarioLogado");
+        model.addAttribute("usuarioLogado", usuarioLogado);
 
         LoginFactory factory = new LoginFactory();
         String acessoBanco = factory.passarParaBancoDeDados(acesso);
-        loginService.cadastrar(login, senha, acessoBanco);
-        return "redirect:/login/exibicao";
+
+        try {
+            loginService.cadastrar(login, senha, acessoBanco);
+            return "redirect:/login/exibicao";
+        } catch (IllegalStateException e) {
+            model.addAttribute("erroDuplicado", true);
+            model.addAttribute("tiposAcesso", factory.getTiposLogin());
+            return "CadastroLogin";
+        }
     }
 
     @PostMapping("/excluir/{id}")
-    public String excluir(@PathVariable int id) {
+    public String excluir(@PathVariable int id, HttpSession session) {
+        Login usuarioLogado = (Login) session.getAttribute("usuarioLogado");
+        if(id == usuarioLogado.getId()){
+            return "redirect:/login/exibicao";
+        }
+        
         loginService.excluir(id);
         return "redirect:/login/exibicao";
     }

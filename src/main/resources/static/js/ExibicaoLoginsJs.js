@@ -1,4 +1,7 @@
+//Esse também e foi depois que eu corrigi os bugs :(
 $(document).ready(function () {
+    
+    const usuarioLogadoId = Number($(".user-panel").data("id"));
 
     $("#btnNavBuscarLivros").on("click", function () {
         location.href = "/buscarlivros";
@@ -21,15 +24,19 @@ $(document).ready(function () {
     });
 
     $(".btnExcluirLogin").on("click", function () {
-        const id = $(this).data("id");
+        const id = Number($(this).data("id"));
 
+        if (id === usuarioLogadoId) {
+            alert("Você não pode excluir o login atualmente em uso.");
+            return;
+        }
+        
         if (confirm("Deseja realmente excluir este login?")) {
-
             const form = $("<form>", {
                 method: "POST",
                 action: "/login/excluir/" + id
             });
-
+            
             $(document.body).append(form);
             form.submit();
         }
